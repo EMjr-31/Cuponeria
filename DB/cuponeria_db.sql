@@ -1,31 +1,36 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-04-2023 a las 03:49:28
--- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `cuponeria_db`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cliente`
---
+Create database Cuponeria;
+use Cuponeria;
+-- Estructura de tabla para la tabla `empresa`
+CREATE TABLE IF NOT EXISTS `empresa` (
+  `id_empresa` varchar(5)  NOT NULL,
+  `comision_empresa` float NOT NULL,
+  `estado_empresa` tinyint(1) NOT NULL,
+  `fechacreacion_empresa` datetime NOT NULL,
+  `rubro_empresa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_empresa`)
+);
+-- Estructura de tabla para la tabla `roles`
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `rol_roles` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado_roles` tinyint(1) NOT NULL,
+  `id_rol` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_rol`)
+) ;
+-- Estructura de tabla para la tabla `usuario`
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `correo_usuario` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `contraseña_usuario` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado_usuario` tinyint(1) NOT NULL,
+  `fechacreacion_usuario` datetime NOT NULL,
+  `id_empresa` varchar(5) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `id_rol` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa),
+  FOREIGN KEY (id_empresa) REFERENCES roles(id_empresa)
+);
 
 DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
@@ -36,22 +41,10 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `identificacion_cliente` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `estado_cliente` tinyint(1) NOT NULL,
   `fechacreacion_cliente` datetime NOT NULL,
-  KEY `Cliente_fk0` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios (`id_usuario`)
+);
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`id_cliente`, `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
-('CT001', 'USU02', 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `cupon`
---
-
 DROP TABLE IF EXISTS `cupon`;
 CREATE TABLE IF NOT EXISTS `cupon` (
   `id_cupon` varchar(7) COLLATE utf8_spanish2_ci NOT NULL,
@@ -67,13 +60,27 @@ CREATE TABLE IF NOT EXISTS `cupon` (
   `id_empresa` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
   `imagen` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_cupon`),
-  KEY `Cupon_fk0` (`id_empresa`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  FOREIGN KEY (id_empresa) REFERENCES empresa (`id_empresa`)
+);
+-- Estructura de tabla para la tabla `ventas`
+DROP TABLE IF EXISTS `ventas`;
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `id_venta` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_cupon` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_cliente` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_compra_ventas` datetime NOT NULL,
+  `estado_pago_ventas` tinyint(1) NOT NULL,
+  `estado_canje_ventas` binary(10) NOT NULL,
+  `fecha_canje_ventas` datetime NOT NULL,
+  FOREIGN KEY (id_cupon) REFERENCES cupon(`id_cupon`),
+  FOREIGN KEY (id_cliente) REFERENCES cliente(`id_cliente`)
+) ;
 
---
--- Volcado de datos para la tabla `cupon`
---
+-- Datos para la tabla `cliente`
+INSERT INTO `cliente` (`id_cliente`, `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
+('CT001', 'USU02', 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
 
+-- Datos para la tabla `cupon`
 INSERT INTO `cupon` (`id_cupon`, `titulo_cupon`, `precio_regular_cupon`, `precio_oferta_cupon`, `fecha_inicio_of_cupon`, `fecha_final_of_cupon`, `fecha_limite_cupon`, `descripcion_cupon`, `cantidad_cupon`, `estado_cupon`, `id_empresa`, `imagen`) VALUES
 ('CUP0001', 'mar de vida spa', 60, 19, '2023-04-11 03:00:28', '2023-04-25 21:00:28', '2023-04-25 21:00:28', '¡Paga $19 en Lugar de $60 por 2 Masajes Relajantes + 2 Masajes de Piedras Calientes + 2 Masajes Craneofacial + 2 Reflexologías!', 20, 1, 'EMP03', 'IMG0001'),
 ('CUP0002', 'TRATAMIENTO CELULAS', 49, 10, '2023-04-12 21:00:28', '2023-04-29 21:00:28', '2023-04-29 21:00:28', '¡Paga $10 en Lugar de $49 por Tratamiento de Células Madre con Uva Macerada + Corte con Split Ender Pro o Cauterización Infrarroja + Lavado Desintoxicante + Planchado + Aplicación de Gotas!', 20, 1, 'EMP04', 'IMG0002'),
@@ -96,26 +103,7 @@ INSERT INTO `cupon` (`id_cupon`, `titulo_cupon`, `precio_regular_cupon`, `precio
 ('CUP0019', 'CHEQUEO DE ORGANOS', 50, 10, '2023-04-11 03:14:15', '2023-04-30 21:14:26', '2023-04-30 21:14:26', '¡Paga $10 en Lugar de $50 por Análisis Cuántico de Bioresonancia Magnética (Chequeo Computarizado de Todos los Órganos)!', 50, 1, 'EMP21', 'IMG0019'),
 ('CUP0020', 'PERFORACION DE OREJA', 25, 10, '2023-04-11 03:47:37', '2023-04-18 21:47:37', '2023-04-18 21:47:37', '¡Paga $10 en Lugar de $25 por 1 Perforación en Oreja, Ombligo o Nariz + Pieza Básica!', 65, 1, 'EMP22', 'IMG0020');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empresa`
---
-
-DROP TABLE IF EXISTS `empresa`;
-CREATE TABLE IF NOT EXISTS `empresa` (
-  `id_empresa` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `comision_empresa` float NOT NULL,
-  `estado_empresa` tinyint(1) NOT NULL,
-  `fechacreacion_empresa` datetime NOT NULL,
-  `rubro_empresa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_empresa`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
 -- Volcado de datos para la tabla `empresa`
---
-
 INSERT INTO `empresa` (`id_empresa`, `comision_empresa`, `estado_empresa`, `fechacreacion_empresa`, `rubro_empresa`) VALUES
 ('EMP01', 0, 1, '2023-04-06 21:51:17', 'ADMINISTRADOR'),
 ('EMP03', 600, 1, '2023-04-11 02:42:41', 'SPA'),
@@ -140,76 +128,12 @@ INSERT INTO `empresa` (`id_empresa`, `comision_empresa`, `estado_empresa`, `fech
 ('EMP21', 500, 1, '2023-04-11 02:58:51', 'BIOMEDICA'),
 ('EMP22', 900, 1, '2023-04-11 02:58:51', 'PERFORACION');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `rol_roles` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado_roles` tinyint(1) NOT NULL,
-  `id_rol` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_rol`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `roles`
---
-
-INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
-('administrador', 1, 'ROL01'),
-('cliente', 1, 'ROL02');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `correo_usuario` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `contraseña_usuario` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado_usuario` tinyint(1) NOT NULL,
-  `fechacreacion_usuario` datetime NOT NULL,
-  `id_empresa` varchar(5) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `id_rol` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  KEY `Usuario_fk0` (`id_empresa`),
-  KEY `Usuario_fk1` (`id_rol`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
 -- Volcado de datos para la tabla `usuario`
---
-
 INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contraseña_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
 ('USU01', 'admin@admin.com', 'admin', 1, '2023-04-06 21:48:26', 'EMP01', 'ROL01'),
 ('USU02', 'usuario@usuario.com', '123456', 1, '2023-04-11 02:20:55', NULL, 'ROL02');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas`
---
-
-DROP TABLE IF EXISTS `ventas`;
-CREATE TABLE IF NOT EXISTS `ventas` (
-  `id_venta` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_cupon` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_cliente` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_compra_ventas` datetime NOT NULL,
-  `estado_pago_ventas` tinyint(1) NOT NULL,
-  `estado_canje_ventas` binary(10) NOT NULL,
-  `fecha_canje_ventas` datetime NOT NULL,
-  KEY `Ventas_fk0` (`id_cupon`),
-  KEY `Ventas_fk1` (`id_cliente`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- Volcado de datos para la tabla `roles`
+INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
+('administrador', 1, 'ROL01'),
+('cliente', 1, 'ROL02');
