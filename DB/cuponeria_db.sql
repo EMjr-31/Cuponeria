@@ -3,6 +3,7 @@ use Cuponeria;
 -- Estructura de tabla para la tabla `empresa`
 CREATE TABLE IF NOT EXISTS `empresa` (
   `id_empresa` varchar(5)  NOT NULL,
+  `nombre_empresa` varchar(255) NOT NULL,
   `comision_empresa` float NOT NULL,
   `estado_empresa` tinyint(1) NOT NULL,
   `fechacreacion_empresa` datetime NOT NULL,
