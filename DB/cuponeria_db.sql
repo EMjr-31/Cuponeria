@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- Estructura de tabla para la tabla `usuario`
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_usuario` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
   `correo_usuario` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `contraseña_usuario` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
+  `contrasenia_usuario` varchar(256) COLLATE utf8_spanish2_ci NOT NULL,
   `estado_usuario` tinyint(1) NOT NULL,
   `fechacreacion_usuario` datetime NOT NULL,
   `id_empresa` varchar(5) COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `id_cliente` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_usuario` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_cliente` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_usuario` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
   `nombre` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `fechanacimiento_cliente` datetime NOT NULL,
   `identificacion_cliente` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 
 -- Datos para la tabla `cliente`
 INSERT INTO `cliente` (`id_cliente`, `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
-('CT001', 'USU02', 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
+('CT0001', 'USU002', 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
 
 -- Datos para la tabla `cupon`
 INSERT INTO `cupon` (`id_cupon`, `titulo_cupon`, `precio_regular_cupon`, `precio_oferta_cupon`, `fecha_inicio_of_cupon`, `fecha_final_of_cupon`, `fecha_limite_cupon`, `descripcion_cupon`, `cantidad_cupon`, `estado_cupon`, `id_empresa`, `imagen`) VALUES
@@ -130,11 +130,17 @@ INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`,`comision_empresa`, `estad
 ('EMP22', 'Pagoda Piercing', 0.3, 1, '2023-04-11 02:58:51', 'PERFORACION');
 
 -- Volcado de datos para la tabla `usuario`
-INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contraseña_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
-('USU01', 'admin@admin.com', 'admin', 1, '2023-04-06 21:48:26', 'EMP01', 'ROL01'),
-('USU02', 'usuario@usuario.com', '123456', 1, '2023-04-11 02:20:55', NULL, 'ROL02');
-
+INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
+('USU001', 'admin@admin.com', SHA2('admin',256), 1, '2023-04-06 21:48:26', 'EMP01', 'ROL01'),
+('USU002', 'usuario@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
+INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
+('USU003', 'prueba@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
 -- Volcado de datos para la tabla `roles`
 INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
 ('administrador', 1, 'ROL01'),
 ('cliente', 1, 'ROL02');
+
+
+Select U.id_usuario,U.id_rol, A.nombre from usuario as U
+INNER JOIN cliente as A on U.id_usuario=A.id_usuario
+WHERE U.correo_usuario='usuario@usuario.com' AND U.contrasenia_usuario=SHA2('123456',256)
