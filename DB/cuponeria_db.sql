@@ -105,29 +105,29 @@ INSERT INTO `cupon` (`id_cupon`, `titulo_cupon`, `precio_regular_cupon`, `precio
 ('CUP0020', 'PERFORACION DE OREJA', 25, 10, '2023-04-11 03:47:37', '2023-04-18 21:47:37', '2023-04-18 21:47:37', '¡Paga $10 en Lugar de $25 por 1 Perforación en Oreja, Ombligo o Nariz + Pieza Básica!', 65, 1, 'EMP22', 'IMG0020');
 
 -- Volcado de datos para la tabla `empresa`
-INSERT INTO `empresa` (`id_empresa`, `comision_empresa`, `estado_empresa`, `fechacreacion_empresa`, `rubro_empresa`) VALUES
-('EMP01', 0, 1, '2023-04-06 21:51:17', 'ADMINISTRADOR'),
-('EMP03', 600, 1, '2023-04-11 02:42:41', 'SPA'),
-('EMP04', 800, 1, '2023-04-11 02:42:41', 'BELLEZA Y RELAJACION '),
-('EMP02', 0, 1, '2023-04-11 02:19:08', 'CLIENTE'),
-('EMP05', 500, 1, '2023-04-11 02:42:41', 'COMIDA '),
-('EMP06', 700, 1, '2023-04-11 02:42:41', 'COSMETICO'),
-('EMP07', 1000, 1, '2023-04-11 02:42:41', 'LABORATORIO CLINICO'),
-('EMP08', 100, 1, '2023-04-11 02:42:41', 'COMIDA '),
-('EMP09', 200, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
-('EMP10', 200, 1, '2023-04-11 02:42:41', 'LIMPIEZA FACIAL'),
-('EMP11', 150, 1, '2023-04-11 02:42:41', 'COSMETICO'),
-('EMP12', 1500, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
-('EMP13', 600, 1, '2023-04-11 02:42:41', 'LIMPIEZA'),
-('EMP14', 50, 1, '2023-04-11 02:42:41', 'BELLEZA'),
-('EMP15', 60, 1, '2023-04-11 02:42:41', 'BELLEZA'),
-('EMP16', 800, 1, '2023-04-11 02:42:41', 'BELLEZA'),
-('EMP17', 600, 1, '2023-04-11 02:42:41', 'SPA'),
-('EMP18', 650, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
-('EMP19', 1000, 1, '2023-04-11 02:42:41', 'BELLEZA'),
-('EMP20', 200, 1, '2023-04-11 02:42:41', 'MEDICINA'),
-('EMP21', 500, 1, '2023-04-11 02:58:51', 'BIOMEDICA'),
-('EMP22', 900, 1, '2023-04-11 02:58:51', 'PERFORACION');
+INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`,`comision_empresa`, `estado_empresa`, `fechacreacion_empresa`, `rubro_empresa`) VALUES
+('EMP01', 'Crew Co', 0, 1, '2023-04-06 21:51:17', 'ADMINISTRADOR'),
+('EMP03', 'Las Magnolias Spa ', 0.3, 1, '2023-04-11 02:42:41', 'SPA'),
+('EMP04', 'Diva Violeta Spa & Beauty Salon', 0.4, 1, '2023-04-11 02:42:41', 'BELLEZA Y RELAJACION '),
+('EMP02', 'Thrive Market', 0, 1, '2023-04-11 02:19:08', 'CLIENTE'),
+('EMP05', 'Rustika Restaurante', 0.5, 1, '2023-04-11 02:42:41', 'COMIDA '),
+('EMP06', 'Makeover Beauty Supply', 0.2, 1, '2023-04-11 02:42:41', 'COSMETICO'),
+('EMP07', 'Sero-Lab', 0.1, 1, '2023-04-11 02:42:41', 'LABORATORIO CLINICO'),
+('EMP08', 'El Sazón De La Abuela', 0.1, 1, '2023-04-11 02:42:41', 'COMIDA '),
+('EMP09', 'Avodent Clinica Dental', 0.2, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
+('EMP10', 'DreamBeaty Skin', 0.4, 1, '2023-04-11 02:42:41', 'LIMPIEZA FACIAL'),
+('EMP11', 'Belleza Glam', 0.15, 1, '2023-04-11 02:42:41', 'COSMETICO'),
+('EMP12', 'Ortonova', 0.25, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
+('EMP13', 'EcoClean', 0.3, 1, '2023-04-11 02:42:41', 'LIMPIEZA'),
+('EMP14', 'Claro de Luna Salon', 0.5, 1, '2023-04-11 02:42:41', 'BELLEZA'),
+('EMP15', 'Essence Salon', 0.2, 1, '2023-04-11 02:42:41', 'BELLEZA'),
+('EMP16', 'Midas Touch  Salon', 0.3, 1, '2023-04-11 02:42:41', 'BELLEZA'),
+('EMP17', 'Bluepearl Spa', 0.4, 1, '2023-04-11 02:42:41', 'SPA'),
+('EMP18', 'Clínica Dental Smiling', 0.5, 1, '2023-04-11 02:42:41', 'ODONTOLOGIA'),
+('EMP19', 'Beauty Lair Salon', 0.1, 1, '2023-04-11 02:42:41', 'BELLEZA'),
+('EMP20', 'Kinesalud', 0.4, 1, '2023-04-11 02:42:41', 'MEDICINA'),
+('EMP21', 'Medical Supply Co', 0.4, 1, '2023-04-11 02:58:51', 'BIOMEDICA'),
+('EMP22', 'Pagoda Piercing', 0.3, 1, '2023-04-11 02:58:51', 'PERFORACION');
 
 -- Volcado de datos para la tabla `usuario`
 INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contraseña_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
