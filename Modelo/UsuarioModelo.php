@@ -14,14 +14,19 @@ class UsuarioModelo extends Modelo{
         
     }
 
-    public function insertUsuarios($cupon=array()){
+    public function insertUsuarios($usurio=array()){
         $query="INSERT INTO `usuario` (`id_usuario`, `correo_usuario`,  `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_rol`) VALUES (:id_usuario,:correo_usuario, SHA2(:contraseña_usuario,256),1,:fechacreacion_usuario,'ROL01')";
-         echo $this->setQuery($query,$cupon);
+         echo $this->setQuery($query,$usurio);
     }
 
-    public function updateUsuario($cupon=array()){
+     public function validateCorre($correo){
+        $query="SELECT * FROM  usuario WHERE correo_usuario=:correo_usuario";
+        return $this->setQuery($query,['correo_usuario'=>$correo]);
+     }
+
+    public function updateUsuario($usuario=array()){
         $query="UPDATE usuario SET correo_usuario=:correo_usuario, contrasenia_usuario=:SHA2(:contrasenia_usuario,256) WHERE id_usuario=:id_usuario";
-        return $this->setQuery($query,$cupon);
+        return $this->setQuery($query,$usuario);
 
     }
 

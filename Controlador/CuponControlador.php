@@ -81,7 +81,6 @@ class CuponControlador extends Controlador{
 
     public function delete($id){
         $cod= explode('.',$id)[0];
-        unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/Vista/assets/img/'.$id);
         $this->model->removeCupon($cod);
     }
 

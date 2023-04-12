@@ -16,9 +16,26 @@ class UsuarioControlador extends Controlador{
         $viewBag['usuario']=$usuario;
         $this->render("index.php",$viewBag);
     }
+
     public function delete($id){
         $cod= explode('.',$id)[0];
         $this->model->removeUsurio($cod);
     }
+
+    public function insertUsuario(){
+        $errores=array();
+
+    }
+
+    public function correo($correo){
+         $errores=array();
+        if($this->model->validateCorre($correo)==1){
+            array_push($errores,'El correo ya esta registrado');
+        }
+        var_dump($errores);
+    }
+
+    
+
 
 }
