@@ -15,6 +15,13 @@ class CuponControlador extends Controlador{
         $viewBag['cupones']=$cupones;
         $this->render("index.php",$viewBag);
     }
+    public function detalles($id){
+        $viewBag=array();
+        $cupon_detalles=$this->model->get($id);
+        $viewBag['cupon_detalles']=$cupon_detalles;
+        $this->render("detalleCupones.php",$viewBag);
+    }
+
 
     public function add(){
         if(isset($_POST['btn'])){

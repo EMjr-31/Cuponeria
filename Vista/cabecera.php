@@ -1,6 +1,3 @@
-<?php
-    include '../../Core/config.php';
-?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -17,5 +14,3 @@
 <link href="<?=PATH?>/Vista/assets/css/owl.carousel.min.css" rel="stylesheet">
 <link href="<?=PATH?>/Vista/assets/css/owl.theme.default.min.css" rel="stylesheet">
 <link href="<?=PATH?>/Vista/assets/css/estilotabla.css" rel="stylesheet">
-<?php
-?>

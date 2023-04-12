@@ -1,4 +1,5 @@
 <?php
+include_once 'Core/config.php';
 require_once 'Controlador/CuponControlador.php';
 require_once 'Controlador/EmpresaControlador.php';
 session_start();
