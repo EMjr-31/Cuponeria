@@ -15,12 +15,5 @@ class EmpresaControlador extends Controlador{
         $viewBag['empresas']=$empresas;
         $this->render("index.php",$viewBag);
     }
-
-
-    public function delete($id){
-        $cod= explode('.',$id)[0];
-        $this->model->removeEmpresa($cod);
-    }
-
     
 }

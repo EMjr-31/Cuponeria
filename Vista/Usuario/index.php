@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <?php
-        include '../cabecera.php'
+        include './Vista/cabecera.php'
     ?>
 </head>
 <body>
     <?php
-        include '../menu.php';
+        include './Vista/menu.php';
+        var_dump($usuario);
     ?>
     <?php
-        include '../footer.php'
+        include './Vista/footer.php'
     ?>
 </body>
 </html>

@@ -2,9 +2,9 @@
     <div class="container">
         <div class="footer_menu">
             <ul>
-                <li><a href="<?=PATH?>/Vista/Principal/index.php">Inicio</a></li>
-                <li><a href="<?=PATH?>/Vista/Cupones/index.php">Cupones</a></li>
-                <li><a href="<?=PATH?>/Vista/Empresas/index.php">Empresas</a></li>
+                <li><a href="<?=PATH?>/Cupon/Principal">Inicio</a></li>
+                <li><a href="<?=PATH?>/Cupon">Cupones</a></li>
+                <li><a href="<?=PATH?>/Empresa">Empresas</a></li>
                 <li><a href="#">Canjear Cupones</a></li>
                 <li><a href="#">Lo mas Vendido</a></li>
             </ul>

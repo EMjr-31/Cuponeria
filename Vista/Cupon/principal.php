@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <?php
-        include '../cabecera.php'
+        include './Vista/cabecera.php'
     ?>
 </head>
 <body>
     <?php
-        include '../menu.php';
+        include './Vista/menu.php';
     ?>
     <div class="banner_section layout_padding">
         <div class="container">
@@ -19,7 +19,7 @@
                 <div class="col-md-6">
                     <div class="banner_taital">Cupones <br>Siempre lo mejor para este 2023</div>
                     <p class="banner_text">¡Tenemos muchas ofertas, no dejes que se te escapen! </p>
-                    <div class="see_bt"><a href="<?=PATH?>/Vista/Cupones/index.php">Ver Cupones</a></div>
+                    <div class="see_bt"><a href="<?=PATH?>/Cupon">Ver Cupones</a></div>
                 </div>
                 <div class="col-md-6">
                   <div class="play_icon"><a href="<?=PATH?>/Vista/Cupones/index.php"><img src="<?=PATH?>/Vista/assets/img/menu/play-icon.png"></a></div>
@@ -58,7 +58,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="paly_bt"><a href="<?=PATH?>/Vista/Empresas/index.php">Conocelas</a></div>
+                  <div class="paly_bt"><a href="<?=PATH?>/Empresa">Conocelas</a></div>
                </div>
             </div>
          </div>
@@ -236,7 +236,7 @@
          </div>
       </div>
     <?php
-        include '../footer.php'
+        include './Vista/footer.php'
     ?>
 </body>
 </html>
