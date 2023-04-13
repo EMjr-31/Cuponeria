@@ -19,10 +19,34 @@ class UsuarioModelo extends Modelo{
          echo $this->setQuery($query,$usurio);
     }
 
-     public function validateCorre($correo){
+    public function validateCorre($correo){
         $query="SELECT * FROM  usuario WHERE correo_usuario=:correo_usuario";
         return $this->setQuery($query,['correo_usuario'=>$correo]);
-     }
+    }
+
+    //Validar el numero de caracteres de la contra
+    public function validateContra($contraseña_usuario) {
+        if (strlen($contraseña_usuario) < 8) {
+          return false;
+        }
+        return true;
+    }
+
+     //validar fecha de creación
+    function validateFechaCrea($fecha_creacion_usuario) {
+            $formato_valido = 'Y-m-d H:i:s';
+            $fecha_creacion_obj = DateTime::createFromFormat($formato_valido, $fecha_creacion_usuario);
+            $errores = DateTime::getLastErrors();
+            
+            if ($fecha_creacion_obj && $errores['warning_count'] === 0 && $errores['error_count'] === 0) {
+              $fecha_actual = new DateTime();
+              $dias_desde_creacion = $fecha_actual->diff($fecha_creacion_obj)->d;
+              if ($dias_desde_creacion <= 0) {
+                return true;
+              }
+            }
+         return false;
+    }
 
     public function updateUsuario($usuario=array()){
         $query="UPDATE usuario SET correo_usuario=:correo_usuario, contrasenia_usuario=:SHA2(:contrasenia_usuario,256) WHERE id_usuario=:id_usuario";
