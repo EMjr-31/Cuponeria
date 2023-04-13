@@ -31,7 +31,14 @@ function esVacio($correo_usuario, $contraseña_usuario){
     }
 }
 
-
+//Verifica que los campos solo admitan texto
+function esTexto($var){
+    if(preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', $var)){
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 ?>
