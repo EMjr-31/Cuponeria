@@ -22,7 +22,7 @@
                     <div class="see_bt"><a href="<?=PATH?>/Cupon">Ver Cupones</a></div>
                 </div>
                 <div class="col-md-6">
-                  <div class="play_icon"><a href="<?=PATH?>/Vista/Cupones/index.php"><img src="<?=PATH?>/Vista/assets/img/menu/play-icon.png"></a></div>
+                  <div class="play_icon"><a href="<?=PATH?>/Cupon"><img src="<?=PATH?>/Vista/assets/img/menu/play-icon.png"></a></div>
                 </div>
             </div>
         </div>
