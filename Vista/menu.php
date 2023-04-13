@@ -19,7 +19,7 @@
                     <a class="nav-link" href="#">Canjear Cupones</a>
                 </li>
             </ul>
-        <div class="search_icon"><a href="#"><img src="<?=PATH?>/Vista/assets/img/menu/user-icon.png"><span class="padding_left_15">login</span></a></div>
+        <div class="search_icon"><a href="<?=PATH?>/Vista/Usuarios/index.php"><img src="<?=PATH?>/Vista/assets/img/menu/user-icon.png"><span class="padding_left_15">Login</span></a></div>
         <div class="search_icon"><a href="#"><img src="<?=PATH?>/Vista/assets/img/menu/eye-icon.png"><span class="padding_left_15">Carrito</span></a></div>
         <div class="search_icon"><a href="#"><img src="<?=PATH?>/Vista/assets/img/menu/search-icon.png"><span class="padding_left_15">Ofertas...</span></a></div>
         </div>
