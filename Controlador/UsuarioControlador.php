@@ -11,10 +11,38 @@ class UsuarioControlador extends Controlador{
     }
 
     public function login(){
+        $this->render("index.php");
+    }
+
+    public function inicioSesion(){
         $viewBag=array();
-        $usuario=$this->model->get();
-        $viewBag['usuario']=$usuario;
-        $this->render("index.php",$viewBag);
+        $errores=array();
+        $correo_usuario=trim($_POST['correo_usuario']);
+        $contrasenia_usuario=trim($_POST['contrasenia_usuario']);
+        if(isset($_POST['login'])){
+            if(!($this->model->validateCorre($correo_usuario)==1)){
+                array_push($errores,'El correo no esta registrado');
+            }
+            if(empty($errores)){
+                if($this->model->validateUsuario( $correo_usuario,$contrasenia_usuario)){
+                    $login_data=$this->model->validateUsuario( $correo_usuario,$contrasenia_usuario);
+                    $login_data=$login_data[0];
+                    $_SESSION['login_data']=$login_data;
+                    header('location:'.PATH."/Cupon");
+                }else{
+                    array_push($errores,"El usuario y/o password son incorrectos");
+                    $viewBag['errores']=$errores;
+                    $this->render("index.php",$viewBag);
+                }
+            }
+            $viewBag['errores']=$errores;
+            $this->render("index.php",$viewBag);
+        }else{
+            array_push($errores,"Compete el formulario");
+            $viewBag['errores']=$errores;
+            $this->render("index.php",$viewBag);
+        }
+
     }
 
     public function delete($id){
@@ -29,9 +57,7 @@ class UsuarioControlador extends Controlador{
 
     public function correo($correo){
         $errores=array();
-        if($this->model->validateCorre($correo)==1){
-            array_push($errores,'El correo ya esta registrado');
-        }
+        
         var_dump($errores);
     }
 }

@@ -35,15 +35,20 @@ class UsuarioModelo extends Modelo{
         return $this->setQuery($query,['id_usuario'=>$id]);
     }
 
-    public function validateUsuario($correo_usuario,$contraseña_usuario){
+    public function validateUsuario($correo_usuario,$contrasenia_usuario){
+        
         $query="SELECT U.id_usuario,U.id_rol, A.nombre FROM usuario as U
         INNER JOIN cliente as A on U.id_usuario=A.id_usuario
-        WHERE U.correo_usuario=:correo_usuario AND U.contrasenia_usuario=SHA2(:contraseña_usuario,256)";
-        return $this->getQuery($query,['correo_usuario'=>$correo_usuario, 'contraseña_usuario'=>$contraseña_usuario]);
+        WHERE U.correo_usuario=:correo_usuario AND U.contrasenia_usuario=SHA2(:contrasenia_usuario,256)";
+        return $this->getQuery($query,['correo_usuario'=>$correo_usuario, 'contrasenia_usuario'=>$contrasenia_usuario]);
     }
 
     public function lastUsuario(){
         $query="SELECT MAX(id_usuario) FROM usuario";
         return $this->getQuery($query);
+    }
+
+    public function perfil(){
+        
     }
 }

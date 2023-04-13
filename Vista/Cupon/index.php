@@ -44,7 +44,7 @@
                     ?>
                     <div class="iamge_movies">
                         <div class="image_3">
-                           <img src="<?=PATH?>/Vista/assets/img/cupones/<?=$cupon['imagen'];?>" class="image" style="width:100%">
+                           <img src="<?=PATH?>/Vista/assets/img/cupones/<?=$cupon['imagen'].".jpg";?>" class="image" style="width:100%">
                            <div class="middle">
                            <a href="<?=PATH?>/Cupon/detalles/<?=$cupon['id_cupon']?>"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>

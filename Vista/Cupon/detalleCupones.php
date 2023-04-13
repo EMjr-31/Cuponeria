@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="image_17">
-                            <img src="<?=PATH?>/Vista/assets/img/cupones/<?=$imagen?>" class="image" style="width:100%">
+                            <img src="<?=PATH?>/Vista/assets/img/cupones/<?=$imagen.".jpg";?>" class="image" style="width:100%">
                         </div>
                     </div>
                         <form class="col-md-6" action="<?=PATH?>/Vista/Carrito/carrito.php" method="post">
