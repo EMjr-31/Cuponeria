@@ -28,14 +28,10 @@ class UsuarioControlador extends Controlador{
     }
 
     public function correo($correo){
-         $errores=array();
+        $errores=array();
         if($this->model->validateCorre($correo)==1){
             array_push($errores,'El correo ya esta registrado');
         }
         var_dump($errores);
     }
-
-    
-
-
 }
