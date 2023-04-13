@@ -38,7 +38,7 @@
             </form>
             <section class="form-cuenta">
                 <h4>¿No tienes una cuenta?</h4>
-                <div class="see_buttons"><a href="<?=PATH?>/Vista/Usuarios/registro.php">Registrarse</a></div>
+                <div class="see_buttons"><a href="<?=PATH?>/Usuario/registro">Registrarse</a></div>
             </section>
         </div>
     </div>

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- Estructura de tabla para la tabla `usuario`
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_usuario`INT AUTO_INCREMENT,
   `correo_usuario` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `contrasenia_usuario` varchar(256) COLLATE utf8_spanish2_ci NOT NULL,
   `estado_usuario` tinyint(1) NOT NULL,
@@ -35,13 +35,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `id_cliente` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_usuario` varchar(6) COLLATE utf8_spanish2_ci NOT NULL,
-  `nombre` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_cliente` INT AUTO_INCREMENT 		,
+  `id_usuario` INT NOT NULL,
+  `nombre` varchar(256) COLLATE utf8_spanish2_ci NOT NULL,
   `fechanacimiento_cliente` datetime NOT NULL,
   `identificacion_cliente` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `estado_cliente` tinyint(1) NOT NULL,
   `fechacreacion_cliente` datetime NOT NULL,
+    PRIMARY KEY (`id_cliente`),
   FOREIGN KEY (id_usuario) REFERENCES Usuarios (`id_usuario`)
 );
 
@@ -66,20 +67,21 @@ CREATE TABLE IF NOT EXISTS `cupon` (
 -- Estructura de tabla para la tabla `ventas`
 DROP TABLE IF EXISTS `ventas`;
 CREATE TABLE IF NOT EXISTS `ventas` (
-  `id_venta` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_cupon` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_cliente` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_venta` INT AUTO_INCREMENT,
+  `id_cupon` INT NOT NULL,
+  `id_cliente` INT NOT NULL,
   `fecha_compra_ventas` datetime NOT NULL,
   `estado_pago_ventas` tinyint(1) NOT NULL,
   `estado_canje_ventas` binary(10) NOT NULL,
   `fecha_canje_ventas` datetime NOT NULL,
+    PRIMARY KEY (`id_venta`),
   FOREIGN KEY (id_cupon) REFERENCES cupon(`id_cupon`),
   FOREIGN KEY (id_cliente) REFERENCES cliente(`id_cliente`)
 ) ;
 
 -- Datos para la tabla `cliente`
-INSERT INTO `cliente` (`id_cliente`, `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
-('CT0001', 'USU002', 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
+INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
+(2, 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
 
 INSERT INTO `cupon` (`id_cupon`, `titulo_cupon`, `precio_regular_cupon`, `precio_oferta_cupon`, `fecha_inicio_of_cupon`, `fecha_final_of_cupon`, `fecha_limite_cupon`, `descripcion_cupon`, `cantidad_cupon`, `estado_cupon`, `id_empresa`, `imagen`) VALUES
 ('CUP0001', 'mar de vida spa', 60, 19, '2023-04-10 03:00:28', '2023-04-20 21:00:28', '2023-04-25 21:00:28', '¡Paga $19 en Lugar de $60 por 2 Masajes Relajantes + 2 Masajes de Piedras Calientes + 2 Masajes Craneofacial + 2 Reflexologías!', 20, 1, 'EMP03', 'IMG0001'),
@@ -128,11 +130,18 @@ INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`,`comision_empresa`, `estad
 ('EMP22', 'Pagoda Piercing', 0.3, 1, '2023-04-11 02:58:51', 'PERFORACION');
 
 -- Volcado de datos para la tabla `usuario`
-INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
-('USU001', 'admin@admin.com', SHA2('admin',256), 1, '2023-04-06 21:48:26', 'EMP01', 'ROL01'),
-('USU002', 'usuario@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
-INSERT INTO `usuario` (`id_usuario`, `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
-('USU003', 'prueba@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
+INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
+('admin@admin.com', SHA2('admin',256), 1, '2023-04-06 21:48:26', 'EMP01', 'ROL01'),
+('usuario@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
+INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_empresa`, `id_rol`) VALUES
+('prueba@usuario.com',  SHA2('123456',256) , 1, '2023-04-11 02:20:55', NULL, 'ROL02');
+
+INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `id_rol`) VALUES
+('prueba2@usuario.com',  SHA2('1234',256) , 1, 'ROL02');
+SELECT MAX(id_usuario)FROM Usuario;
+INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
+(2, 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
+
 -- Volcado de datos para la tabla `roles`
 INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
 ('administrador', 1, 'ROL01'),

@@ -13,10 +13,14 @@ class UsuarioModelo extends Modelo{
         }
         
     }
+    public function maxUsuario(){
+        $query="SELECT MAX(id_usuario)FROM Usuario;";
+        return $this->getQuery($query);
+    }
 
-    public function insertUsuarios($usurio=array()){
-        $query="INSERT INTO `usuario` (`id_usuario`, `correo_usuario`,  `contrasenia_usuario`, `estado_usuario`, `fechacreacion_usuario`, `id_rol`) VALUES (:id_usuario,:correo_usuario, SHA2(:contraseña_usuario,256),1,:fechacreacion_usuario,'ROL01')";
-         echo $this->setQuery($query,$usurio);
+    public function insertUsuarios($usuario=array()){
+        $query="INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `id_rol`) VALUES (:correo_usuario, SHA2(:contraseña_usuario,256),1,:fechacreacion_usuario,'ROL01')";
+         echo $this->setQuery($query,$usuario);
     }
 
     public function validateCorre($correo){

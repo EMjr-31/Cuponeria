@@ -15,10 +15,14 @@ class ClienteModelo extends Modelo{
     }
 
     public function insertCliente($cliente=array()){
-        $query="INSERT INTO cliente VALUES (:id_cliente,:id_usuario,:nombre,:fechanacimiento_cliente,:identificacion_cliente,1,:fechacreacion_cliente)";
+        $query="INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`) VALUES(:id_usuario,:nombre,:fechanacimiento_cliente,:identificacion_cliente,1)";
          echo $this->setQuery($query,$cliente);
-        
 
+    }
+
+    public function maxCliente(){
+        $query="SELECT MAX(id_cliente)FROM cliente";
+        return $this->getQuery($query);
     }
 
     public function updateCliente($cliente=array()){
