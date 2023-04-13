@@ -68,8 +68,9 @@ CREATE TABLE IF NOT EXISTS `cupon` (
 DROP TABLE IF EXISTS `ventas`;
 CREATE TABLE IF NOT EXISTS `ventas` (
   `id_venta` INT AUTO_INCREMENT,
-  `id_cupon` INT NOT NULL,
+  `id_cupon` VARCHAR(7) NOT NULL,
   `id_cliente` INT NOT NULL,
+  `cantidad` int not null,
   `fecha_compra_ventas` datetime NOT NULL,
   `estado_pago_ventas` tinyint(1) NOT NULL,
   `estado_canje_ventas` binary(10) NOT NULL,
@@ -139,9 +140,10 @@ INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario
 INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `id_rol`) VALUES
 ('prueba2@usuario.com',  SHA2('1234',256) , 1, 'ROL02');
 SELECT MAX(id_usuario)FROM Usuario;
-INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`, `fechacreacion_cliente`) VALUES
-(2, 'JUAN JOSE ', '2023-04-06 22:09:33', '067846348', 1, '2023-04-06 22:09:33');
+INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`) VALUES
+(4, 'EDUAROD MARTINEZ ', '2023-04-06 22:09:33', '067846348', 1);
 
+SELECT MAX(id_cliente)FROM cliente;
 -- Volcado de datos para la tabla `roles`
 INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
 ('administrador', 1, 'ROL01'),
@@ -150,5 +152,5 @@ INSERT INTO `roles` (`rol_roles`, `estado_roles`, `id_rol`) VALUES
 
 Select U.id_usuario,U.id_rol, A.nombre from usuario as U
 INNER JOIN cliente as A on U.id_usuario=A.id_usuario
-WHERE U.correo_usuario='usuario@usuario.com' AND U.contrasenia_usuario=SHA2('123456',256)
+WHERE U.correo_usuario='prueba2@usuario.com' AND U.contrasenia_usuario=SHA2('1234',256)
 

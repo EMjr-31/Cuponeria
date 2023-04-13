@@ -46,8 +46,6 @@
                                     <div class="mins_text_precio">Cantidad </div>
                                     <select class="mins_text_cantidad" name="cantidad" id="cantidad">
                                         <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
                                     </select>
                                 </div>
                             </div>

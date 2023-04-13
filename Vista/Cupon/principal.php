@@ -68,7 +68,7 @@
          <div class="container">
             <div class="movies_section_2 layout_padding">
                <h2 class="letest_text">Cupones de Cuidado Personal</h2>
-               <div class="seemore_bt"><a href="#">Ver Más</a></div>
+               <div class="seemore_bt"><a href="<?=PATH?>/Cupon">Ver Más</a></div>
                <div class="movies_main">
                   <div class="iamge_movies_main">
                      <!-- Seccion de galeria-->
@@ -76,7 +76,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0001.jpg" class="image" style="width:100%">
                            <div class="middle">
-                              <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                              <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Mar de Vida</h1>
@@ -96,7 +96,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0004.jpg" class="image" style="width:100%">
                            <div class="middle">
-                              <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                              <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Lude Mel</h1>
@@ -118,7 +118,7 @@
             </div>
             <div class="movies_section_2 layout_padding">
                <h2 class="letest_text">Cupones de Comida</h2>
-               <div class="seemore_bt"><a href="#">Ver Más</a></div>
+               <div class="seemore_bt"><a href="<?=PATH?>/Cupon">Ver Más</a></div>
                <div class="movies_main">
                   <div class="iamge_movies_main">
                      <!-- Seccion de galeria-->
@@ -126,7 +126,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0003.jpg" class="image" style="width:100%">
                            <div class="middle">
-                           <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                           <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Don Li</h1>
@@ -146,7 +146,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0006.jpg" class="image" style="width:100%">
                            <div class="middle">
-                           <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                           <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Comida Gorda</h1>
@@ -168,7 +168,7 @@
             </div>
             <div class="movies_section_2 layout_padding">
                <h2 class="letest_text">Cupones Variados</h2>
-               <div class="seemore_bt"><a href="#">Ver Más</a></div>
+               <div class="seemore_bt"><a href="<?=PATH?>/Cupon">Ver Más</a></div>
                <div class="movies_main">
                   <div class="iamge_movies_main">
                      <!-- Seccion de galeria-->
@@ -176,7 +176,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0011.jpg" class="image" style="width:100%">
                            <div class="middle">
-                           <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                           <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Multi Servicios A-W</h1>
@@ -196,7 +196,7 @@
                         <div class="image_3">
                            <img src="<?=PATH?>/Vista/assets/img/cupones/IMG0019.jpg" class="image" style="width:100%">
                            <div class="middle">
-                           <a href="<?=PATH?>/Vista/Cupones/index.php"><div class="playnow_bt">Ver Oferta</div></a>
+                           <a href="<?=PATH?>/Cupon"><div class="playnow_bt">Ver Oferta</div></a>
                            </div>
                         </div>
                         <h1 class="code_text">Medical Biologic</h1>
@@ -216,7 +216,7 @@
                   </div>
                </div>
             </div>
-            <div class="seebt_1"><a href="<?=PATH?>/Vista/Cupones/index.php">Ver más</a></div>
+            <div class="seebt_1"><a href="<?=PATH?>/Cupon">Ver más</a></div>
          </div>
       </div>
       <!-- Final del resumen de cupones actuales -->
