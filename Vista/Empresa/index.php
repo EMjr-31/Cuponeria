@@ -52,13 +52,13 @@
                            <a href="#"><div class="playnow_bt">Ver Cupones</div></a>
                            </div>
                         </div>
-                        <h2 class="code_text">Empresa: <?=$empresa['nombre_empresa']?></h2>
-                        <h2 class="code_text">Rubro: <?=$empresa['rubro_empresa']?></h2>
+                        <h2 class="code_text_empresa">Empresa: <?=$empresa['nombre_empresa']?></h2>
+                        <h2 class="code_text_empresa">Rubro: <?=$empresa['rubro_empresa']?></h2>
                         <?php
                             $fechacreacion_empresa=$fechacreacion_empresa=strtotime(explode(" ",$empresa['fechacreacion_empresa'])[0]);
                             $fechacreacion_empresa=date("D",$fechacreacion_empresa)." ".date("d",$fechacreacion_empresa)." de ".date("M",$fechacreacion_empresa)." de ".date("Y",$fechacreacion_empresa);
                         ?>
-                        <h2 class="code_text">Fecha: <?=$fechacreacion_empresa?></h2>
+                        <h2 class="code_text_empresa">Fecha: <?=$fechacreacion_empresa?></h2>
                         <div class="star_icon">
                            <ul>
                                 <?php
