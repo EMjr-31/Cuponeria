@@ -68,4 +68,19 @@ class UsuarioControlador extends Controlador{
         
         var_dump($errores);
     }
+
+    //Contra
+    public function contra($contraseña_usuario) {
+        $errores=array();
+        if(!validateContra($contraseña_usuario)) {
+            array_push($errores['contraseña_usuario'] = 'La contraseña debe tener al menos 8 caracteres');
+          }
+    }
+
+    //Fecha
+    public function fechaC($fecha_creacion_actual) {
+      $errores=array();
+      if (!validar_fecha_creacion_usuario($fecha_creacion)) {
+       array_push($errores['fecha_creacion'] = 'Ingrese una fecha de creación de usuario válida en el formato YYYY-MM-DD hh:mm:ss y que sea anterior o igual a la fecha actual');
+    }
 }
