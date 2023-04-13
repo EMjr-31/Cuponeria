@@ -52,7 +52,7 @@
                     <td><?php echo $fecha_compra_ventas; ?></td>
                     <td><?php echo $precio_oferta_cupon+$i; ?></td>
                     <td>
-                        <form action="" method="post">
+                        <form action="<?=PATH."/Carrito/Generar/"?>" method="get">
                             <input type="hidden" name="nombre" value="<?php echo $nombre.$i; ?>">
                             <input type="hidden" name="identificacion_cliente" value="<?php echo $identificacion_cliente.$i; ?>">
                             <input type="hidden" name="correo_usuario" value="<?php echo $correo_usuario; ?>">

@@ -7,21 +7,21 @@
     <title>Cotizacion</title>
     <?php
         include './Vista/cabecera.php';
-        require '../../vendor/autoload.php';
+        require './vendor/autoload.php';
     ?>
 </head>
 <body>
     <?php
         include './Vista/menu.php';
-$nombre = $_POST['nombre'];
-$identificacion_cliente = $_POST['identificacion_cliente'];
-$correo_usuario = $_POST['correo_usuario'];
-$titulo_cupon = $_POST['titulo_cupon'];
-$precio_oferta_cupon = $_POST['precio_oferta_cupon'];
-$descripccion = $_POST['descripccion'];
-$fecha_compra_ventas = $_POST['fecha_compra_ventas'];
-$id_cliente = $_POST['id_cliente'];
-$id_cupon=$_POST['id_cupon'];
+$nombre = $_GET['nombre'];
+$identificacion_cliente = $_GET['identificacion_cliente'];
+$correo_usuario = $_GET['correo_usuario'];
+$titulo_cupon = $_GET['titulo_cupon'];
+$precio_oferta_cupon = $_GET['precio_oferta_cupon'];
+$descripccion = $_GET['descripccion'];
+$fecha_compra_ventas = $_GET['fecha_compra_ventas'];
+$id_cliente = $_GET['id_cliente'];
+$id_cupon="CP0000";
 $fechaActual = date('d-m-Y');
 
 $html='
@@ -139,7 +139,9 @@ $path = './Vista/pdfDoc/'.$namepdf;
 file_put_contents($path, $output);
     ?>
     <?php
-        include '../footer.php';
+        include './Vista/footer.php';
+        header('location:'.PATH.'/Carrito/abrirPdf/'.$namepdf);
     ?>
+
 </body>
 </html>
