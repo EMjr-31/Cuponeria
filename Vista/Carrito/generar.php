@@ -21,7 +21,7 @@ $precio_oferta_cupon = $_GET['precio_oferta_cupon'];
 $descripccion = $_GET['descripccion'];
 $fecha_compra_ventas = $_GET['fecha_compra_ventas'];
 $id_cliente = $_GET['id_cliente'];
-$id_cupon="CP0000";
+$id_cupon=$_GET['id_cupon'];
 $fechaActual = date('d-m-Y');
 
 $html='

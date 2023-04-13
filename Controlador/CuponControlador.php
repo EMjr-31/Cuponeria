@@ -27,6 +27,7 @@ class CuponControlador extends Controlador{
         $viewBag=array();
         $cupon_detalles=$this->model->get($id);
         $viewBag['cupon_detalles']=$cupon_detalles;
+        $_SESSION['cupon']=$cupon_detalles;
         $this->render("detalleCupones.php",$viewBag);
     }
 

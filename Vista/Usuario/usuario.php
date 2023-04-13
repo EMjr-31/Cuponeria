@@ -25,7 +25,7 @@
         $titulo_cupon='mar de vida spa';
         $precio_oferta_cupon='19.00';
         $descripccion='¡Paga $19 en Lugar de $60 por 2 Masajes Relajantes + 2 Masajes de Piedras Calientes + 2 Masajes Craneofacial + 2 Reflexologías!';
-
+//var_dump($ventas);
     ?>
     <div class="movies_section layout_padding">
         <div id="main-container">
@@ -42,25 +42,26 @@
                     </tr>
                 </thead>
                 <?php
-                    for ($i=0; $i < 3; $i++) { 
+                    foreach($ventas as $venta){ 
                 ?>
                 <tr>
-                    <td><?php echo $nombre.$i; ?></td>
-                    <td><?php echo $identificacion_cliente.$i; ?></td>
-                    <td><?php echo $correo_usuario; ?></td>
-                    <td><?php echo $titulo_cupon.$i.$i.$i; ?></td>
-                    <td><?php echo $fecha_compra_ventas; ?></td>
-                    <td><?php echo $precio_oferta_cupon+$i; ?></td>
+                    <td><?php echo $_SESSION['login_data']['nombre'];?></td>
+                    <td><?php echo $_SESSION['login_data']['identificacion_cliente'];?></td>
+                    <td><?php echo $_SESSION['login_data']['correo_usuario']?></td>
+                    <td><?php echo $venta['id_cupon']; ?></td>
+                    <td><?php echo $venta['fecha_compra_ventas']; ?></td>
+                    <td><?php echo $venta['precio_oferta_cupon']; ?></td>
                     <td>
                         <form action="<?=PATH."/Carrito/Generar/"?>" method="get">
-                            <input type="hidden" name="nombre" value="<?php echo $nombre.$i; ?>">
-                            <input type="hidden" name="identificacion_cliente" value="<?php echo $identificacion_cliente.$i; ?>">
-                            <input type="hidden" name="correo_usuario" value="<?php echo $correo_usuario; ?>">
-                            <input type="hidden" name="titulo_cupon" value="<?php echo $titulo_cupon.$i.$i.$i; ?>">
-                            <input type="hidden" name="precio_oferta_cupon" value="<?php echo $precio_oferta_cupon+$i; ?>">
-                            <input type="hidden" name="descripccion" value="<?php echo $i.$descripccion; ?>">
-                            <input type="hidden" name="fecha_compra_ventas" value="<?php echo $fecha_compra_ventas; ?>">
-                            <input type="hidden" name="id_cliente" value="<?php echo $id_cliente.$i; ?>">
+                        <input type="hidden" name="id_cupon" value="<?php echo $venta['id_cupon']; ?>">
+                            <input type="hidden" name="nombre" value="<?php echo $_SESSION['login_data']['nombre'] ?>">
+                            <input type="hidden" name="identificacion_cliente" value="<?php echo$_SESSION['login_data']['identificacion_cliente']; ?>">
+                            <input type="hidden" name="correo_usuario" value="<?php echo $_SESSION['login_data']['correo_usuario']; ?>">
+                            <input type="hidden" name="titulo_cupon" value="<?php echo  $venta['titulo_cupon'];?>">
+                            <input type="hidden" name="precio_oferta_cupon" value="<?php echo $venta['precio_oferta_cupon']; ?>">
+                            <input type="hidden" name="descripccion" value="<?php $venta['descripcion_cupon']; ?>">
+                            <input type="hidden" name="fecha_compra_ventas" value="<?php echo $venta['fecha_compra_ventas'];  ?>">
+                            <input type="hidden" name="id_cliente" value="<?php echo $_SESSION['login_data']['id_cliente'];?>">
                             <input type="submit" name="agregar" id="agregar" value="Generar" class="btn-primary" />
                         </form>
                     </td>

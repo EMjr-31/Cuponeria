@@ -4,6 +4,7 @@ use Svg\Tag\Path;
 
 require_once 'Controlador.php';
 require_once './Modelo/CuponModelo.php';
+require_once './Modelo/VentaModelo.php';
 class CarritoControlador extends Controlador{
 
     private $model;
@@ -12,8 +13,20 @@ class CarritoControlador extends Controlador{
         $this->model=new CuponModelo();
     }
 
+    public function index(){ 
+    }
     public function comprar(){
-        $this->render("carrito.php");
+        $ventaModelo= new VentaModelo();
+        $venta['id_cupon']=$_SESSION['cupon'][0]['id_cupon'];
+        $venta['id_cliente']=$_SESSION['login_data']['id_cliente'];
+        $venta['cantidad'] = $_GET['cantidad'];
+        if($ventaModelo->insertVenta($venta)){
+            
+            header('location:'.PATH."/Usuario/perfil");
+        }else{
+            echo "erooress";
+        }
+               
     }
     public function generar(){
         $this->render("generar.php");

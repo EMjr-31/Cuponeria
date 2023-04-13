@@ -2,6 +2,7 @@
 require_once 'Controlador.php';
 require_once './Modelo/UsuarioModelo.php';
 require_once './Modelo/ClienteModelo.php';
+require_once './Modelo/VentaModelo.php';
 require_once './Core/validaciones.php';
 class UsuarioControlador extends Controlador{
 
@@ -15,7 +16,11 @@ class UsuarioControlador extends Controlador{
         $this->render("index.php");
     }
     public function perfil(){
-        $this->render("usuario.php");
+        $viewBag=array();
+        $ventaModelo= new VentaModelo();
+        $viewBag['ventas']=$ventaModelo->get($_SESSION['login_data']['id_cliente']);
+
+        $this->render("usuario.php", $viewBag);
     }
     public function registro(){
         $this->render("registro.php");
@@ -35,6 +40,7 @@ class UsuarioControlador extends Controlador{
                     $login_data=$this->model->validateUsuario( $correo_usuario,$contrasenia_usuario);
                     $login_data=$login_data[0];
                     $_SESSION['login_data']=$login_data;
+                    $_SESSION['cupon'];
                     header('location:'.PATH."/Cupon");
                 }else{
                     array_push($errores,"El usuario y/o password son incorrectos");

@@ -4,32 +4,23 @@ class VentaModelo extends Modelo{
 
     public function get($id=''){
         if($id==''){
-            $query="SELECT * from  venta";
+            $query="SELECT * from  ventas";
             return $this->getQuery($query);
         }
         else{
-            $query="SELECT * FROM venta WHERE id_venta=:id_venta";
-            return $this->getQuery($query,['id_empresa'=>$id]);
+            $query="SELECT * FROM ventas INNER JOIN
+            cupon on ventas.id_cupon=cupon.id_cupon
+            WHERE ventas.id_cliente=:id_cliente";
+            return $this->getQuery($query,['id_cliente'=>$id]);
         }
         
     }
 
-    public function insertEmpresa($cupon=array()){
-        $query="INSERT INTO empresa VALUES (:id_empresa,:nombre_empresa,:comision_empresa,:estado_empresa,:fechacreacion_empresa,:rubro_empresa)";
-         echo $this->setQuery($query,$cupon);
-        
-
-    }
-
-    public function updateEmpresa($cupon=array()){
-        $query="UPDATE empresa SET id_empresa=:id_empresa, nombre_empresa=:nombre_empresa, comision_empresa=:comision_empresa,estado_empresa=:estado_empresa,fechacreacion_empresa=:fechacreacion_empresa, rubro_empresa=:rubro_empresa";
-        return $this->setQuery($query,$cupon);
-
-    }
-
-    public function removeEmpresa($id){
-        $query="DELETE FROM empresa WHERE id_empresa=:id_empresa";
-        return $this->setQuery($query,['id_empresa'=>$id]);
+    public function insertVenta($cupon=array()){
+        $query="INSERT INTO ventas(id_cupon,id_cliente,cantidad,fecha_compra_ventas,estado_pago_ventas,estado_canje_ventas)
+        VAlUES (:id_cupon,:id_cliente,:cantidad,now(),1,0)";
+         return $this->setQuery($query,$cupon);
+    
     }
 
 }

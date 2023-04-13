@@ -45,7 +45,6 @@
                                 <div class="movie_main">
                                     <div class="mins_text_precio">Cantidad </div>
                                     <select class="mins_text_cantidad" name="cantidad" id="cantidad">
-                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -55,7 +54,7 @@
                             <input type="hidden" name="precio_oferta_cupon" value="<?php echo $precio_oferta_cupon; ?>">
                             <input type="hidden" name="descripccion" value="<?php echo $descripccion; ?>">
                             <div class="paly_bt">
-                                <input type="submit" name="agregar" id="agregar" value="Comprar" class="botonAgr" />
+                                <input type="submit" name="agregar" id="Comprar" value="Comprar" class="botonAgr" />
                             </div>
                         </form>
                 </div>

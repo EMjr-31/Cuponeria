@@ -4,6 +4,7 @@ require_once 'Controlador/CuponControlador.php';
 require_once 'Controlador/EmpresaControlador.php';
 require_once 'Controlador/UsuarioControlador.php';
 require_once 'Controlador/CarritoControlador.php';
+require_once 'Controlador/VentaControlador.php';
 session_start();
 $url=$_SERVER['REQUEST_URI'];
 $url=explode("/",$url);
