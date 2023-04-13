@@ -13,6 +13,9 @@ class UsuarioControlador extends Controlador{
     public function login(){
         $this->render("index.php");
     }
+    public function perfil(){
+        $this->render("usuario.php");
+    }
 
     public function inicioSesion(){
         $viewBag=array();
@@ -44,7 +47,12 @@ class UsuarioControlador extends Controlador{
         }
 
     }
+    public function logout(){
+        session_unset();
+        session_destroy();
+        header('location:'.PATH.'/Usuario/login');
 
+    }
     public function delete($id){
         $cod= explode('.',$id)[0];
         $this->model->removeUsurio($cod);

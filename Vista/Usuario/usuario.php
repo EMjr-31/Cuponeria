@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario</title>
     <?php
-        include '../cabecera.php'
+        include './Vista/cabecera.php'
     ?>
 </head>
 <body>
     <?php   
-        include '../menu.php';
+        include './Vista/menu.php';
         /*Estos datos vienen al darle login o registrarse por primera vez*/
         $id_cliente='CT001';
         $nombre=$_POST['nombre'];
@@ -79,7 +79,7 @@
 
     </div>
     <?php
-        include '../footer.php'
+        include './Vista/footer.php'
     ?>
 </body>
 </html>

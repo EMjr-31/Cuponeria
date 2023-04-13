@@ -3,6 +3,7 @@ include_once 'Core/config.php';
 require_once 'Controlador/CuponControlador.php';
 require_once 'Controlador/EmpresaControlador.php';
 require_once 'Controlador/UsuarioControlador.php';
+require_once 'Controlador/CarritoControlador.php';
 session_start();
 $url=$_SERVER['REQUEST_URI'];
 $url=explode("/",$url);

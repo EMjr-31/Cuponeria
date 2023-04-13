@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
     <?php
-        include '../cabecera.php'
+        include './Vista/cabecera.php'
     ?>
 </head>
 <body>
     <?php
-        include '../menu.php';
-        $valor = $_POST['precio_oferta_cupon'];
-        $detalle = $_POST['descripccion'];
-        $cantidades = $_POST['cantidad'];
+        include './Vista/menu.php';
+        $valor = $_GET['precio_oferta_cupon'];
+        $detalle = $_GET['descripccion'];
+        $cantidades = $_GET['cantidad'];
         $total = $valor*$cantidades;
     ?>
     <div class="movies_section layout_padding">
@@ -34,18 +34,12 @@
                     <td>$<?php echo number_format($valor,'2','.',','); ?></td>
                     <td>$<?php echo number_format($total,'2','.',','); ?></td>
                 </tr>
-                <tr>
-                    <td>Prueba para cuando se agregue la sesion con mas compras que se acumulen en un Array</td>
-                    <td>3</td>
-                    <td>$10.00</td>
-                    <td>$30.00</td>
-                </tr>
                 <thead>
                     <tr>
                         <th>Total</th>
-                        <th><?php echo $cantidades+3; ?></th>
-                        <th>$<?php echo number_format($valor+10,'2','.',','); ?></th>
-                        <th>$<?php echo number_format($total+30,'2','.',','); ?></th>
+                        <th><?php echo $cantidades; ?></th>
+                        <th>$<?php echo number_format($valor,'2','.',','); ?></th>
+                        <th>$<?php echo number_format($total,'2','.',','); ?></th>
                     </tr>
                 </thead>
             </table>
@@ -68,7 +62,7 @@
 
     </div>
     <?php
-        include '../footer.php'
+        include './Vista/footer.php'
     ?>
 </body>
 </html>

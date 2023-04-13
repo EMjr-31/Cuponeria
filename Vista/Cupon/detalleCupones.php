@@ -32,7 +32,7 @@
                             <img src="<?=PATH?>/Vista/assets/img/cupones/<?=$imagen.".jpg";?>" class="image" style="width:100%">
                         </div>
                     </div>
-                        <form class="col-md-6" action="<?=PATH?>/Vista/Carrito/carrito.php" method="post">
+                        <form class="col-md-6" action="<?=isset($_SESSION['login_data'])?PATH."/Carrito/comprar/":PATH."/Usuario/login/"?>">
                             <h1 class="Cooming_soon_taital"><?=$titulo_cupon?></h1>
                             <div class="movie_main">
                                 <div class="mins_text_1">Valor $ <?php echo number_format($precio_oferta_cupon,'2','.',',');?></div>           
