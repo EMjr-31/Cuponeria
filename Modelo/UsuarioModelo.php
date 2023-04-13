@@ -15,12 +15,12 @@ class UsuarioModelo extends Modelo{
     }
     public function maxUsuario(){
         $query="SELECT MAX(id_usuario)FROM Usuario;";
-        return $this->getQuery($query);
+        return $this->getQuery($query)[0][0];
     }
 
     public function insertUsuarios($usuario=array()){
-        $query="INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `id_rol`) VALUES (:correo_usuario, SHA2(:contraseña_usuario,256),1,:fechacreacion_usuario,'ROL01')";
-         echo $this->setQuery($query,$usuario);
+        $query="INSERT INTO `usuario` ( `correo_usuario`, `contrasenia_usuario`, `estado_usuario`, `id_rol`) VALUES (:correo_usuario, SHA2(:contrasenia_usuario,256),1,'ROL01')";
+        return $this->setQuery($query,$usuario);
     }
 
     public function validateCorre($correo){
@@ -65,7 +65,7 @@ class UsuarioModelo extends Modelo{
 
     public function validateUsuario($correo_usuario,$contrasenia_usuario){
         
-        $query="SELECT U.id_usuario,U.id_rol, A.nombre FROM usuario as U
+        $query="SELECT U.id_usuario,U.id_rol,U.correo_usuario, A.nombre, A.identificacion_cliente FROM usuario as U
         INNER JOIN cliente as A on U.id_usuario=A.id_usuario
         WHERE U.correo_usuario=:correo_usuario AND U.contrasenia_usuario=SHA2(:contrasenia_usuario,256)";
         return $this->getQuery($query,['correo_usuario'=>$correo_usuario, 'contrasenia_usuario'=>$contrasenia_usuario]);

@@ -14,11 +14,10 @@
         include './Vista/menu.php';
         /*Estos datos vienen al darle login o registrarse por primera vez*/
         $id_cliente='CT001';
-        $nombre=$_POST['nombre'];
-        $identificacion_cliente=$_POST['identificacion_cliente'];
-        $fechanacimiento_cliente=$_POST['fechanacimiento_cliente'];
-        $correo_usuario=$_POST['correo_usuario'];
-        $contraseña_usuario=$_POST['contraseña_usuario'];
+        $nombre=$_SESSION['login_data']['nombre'];
+        $identificacion_cliente=$_SESSION['login_data']['identificacion_cliente'];
+        $correo_usuario=$_SESSION['login_data']['correo_usuario'];
+
 
         /*Variables que se llenaran al ejecutarse sobre las compras de cliente*/
         $fecha_compra_ventas='12-04-2023';

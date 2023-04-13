@@ -16,7 +16,7 @@ class ClienteModelo extends Modelo{
 
     public function insertCliente($cliente=array()){
         $query="INSERT INTO `cliente` ( `id_usuario`, `nombre`, `fechanacimiento_cliente`, `identificacion_cliente`, `estado_cliente`) VALUES(:id_usuario,:nombre,:fechanacimiento_cliente,:identificacion_cliente,1)";
-         echo $this->setQuery($query,$cliente);
+         return $this->setQuery($query,$cliente);
 
     }
 

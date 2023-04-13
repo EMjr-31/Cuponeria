@@ -28,12 +28,12 @@
 
                             }
                         }
-
                    ?>
-                <input class="controls_register" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
-                <input class="controls_register" type="text" name="identificacion_cliente" id="identificacion_cliente" placeholder="Ingrese su DUI">
-                <input class="controls_register" type="date" name="fechanacimiento_cliente" id="fechanacimiento_cliente" placeholder="Ingrese su DUI">
-                <input class="controls_register" type="email" name="correo_usuario" id="correo_usuario" placeholder="Ingrese su Correo">
+                   
+                <input class="controls_register" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" value="<?=isset($usuario['nombre'])?$usuario['nombre']:""?>">
+                <input class="controls_register" type="text" name="identificacion_cliente" id="identificacion_cliente" placeholder="Ingrese su DUI" value="<?=isset($usuario['identificacion_cliente'])?$usuario['identificacion_cliente']:""?>">
+                <input class="controls_register" type="date" name="fechanacimiento_cliente" id="fechanacimiento_cliente" value="<?=isset($usuario['fechanacimiento_cliente'])?$usuario['fechanacimiento_cliente']:""?>">
+                <input class="controls_register" type="email" name="correo_usuario" id="correo_usuario" placeholder="Ingrese su Correo" value="<?=isset($usuario['correo_usuario'])?$usuario['correo_usuario']:""?>">
                 <input class="controls_register" type="password" name="contrasenia_usuario" id="contraseña_usuario" placeholder="Ingrese su Contraseña">
                 <input class="controls_register" type="password" name="contrasenia_usuario2" id="contraseña_usuario" placeholder="Ingrese su Contraseña">
                 <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>

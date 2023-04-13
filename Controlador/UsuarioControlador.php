@@ -64,26 +64,30 @@ class UsuarioControlador extends Controlador{
 
     public function insertUsuario(){
         $errores=array();
-        var_dump($_POST);
         if(isset($_POST['registrar'])){
             extract($_POST);
             $errores=array();
+            $usuario=array();
             //Validacion nombre
             if(estaVacio($nombre)||!isset($nombre)){
                 array_push($errores,'Debes ingresar tu nombre');
             }elseif(!(esTexto($nombre))){
                 array_push($errores,'El nombre no debe contener numeros ni simbolos');
             }
+            $usuario['nombre']=$nombre;
             //validacion identificacion
             if(estaVacio($identificacion_cliente)||!isset($identificacion_cliente)){
                 array_push($errores,'Debes ingresar tu identifiacion');
             }elseif(!(esDUI($identificacion_cliente))){
-                array_push($errores,'Identifiacion incorrecto (Use "-")');
+                array_push($errores,'Identificacion incorrecto (Use "-")');
             }
+            $usuario['identificacion_cliente']=$identificacion_cliente;
             //Validacion fecha 
             if(estaVacio($fechanacimiento_cliente)||!isset($fechanacimiento_cliente)){
                 array_push($errores,'Debes ingresar la fecha de nacimiento');
             }
+            $usuario['fechanacimiento_cliente']=$fechanacimiento_cliente;
+            
             if(estaVacio($correo_usuario)||!isset($correo_usuario)){
                 array_push($errores,'Debes ingresar tu correo electronico');
             }elseif(!(esCorreo($correo_usuario))){
@@ -91,6 +95,7 @@ class UsuarioControlador extends Controlador{
             }elseif($this->model->validateCorre($correo_usuario)==1){
                 array_push($errores,'El correo ya esta registrado');
             }
+            $usuario['correo_usuario']=$correo_usuario;
             //Validacion Contrasenia
             if(estaVacio($contrasenia_usuario)||!isset($contrasenia_usuario)){
                 array_push($errores,'Debes ingresar tu contraseña');
@@ -100,7 +105,27 @@ class UsuarioControlador extends Controlador{
             }elseif(!($contrasenia_usuario==$contrasenia_usuario2)){
                 array_push($errores,'Las contrañas no coinciden');
             }
+            $usuario['contrasenia_usuario']=$contrasenia_usuario;
+            if(empty($errores)){
+                $usu=array();
+                $usu['correo_usuario']=$correo_usuario;
+                $usu['contrasenia_usuario']=$contrasenia_usuario;
+                if($this->model->insertUsuarios($usu)){
+                    $id_usuario= $this->model->maxUsuario();
+                    $cliente=array();
+                    $cliente['id_usuario']=$id_usuario;
+                    $cliente['nombre']=$nombre;
+                    $cliente['fechanacimiento_cliente']=$fechanacimiento_cliente;
+                    $cliente['identificacion_cliente']=$identificacion_cliente;
+                    $clienteModelo=new ClienteModelo();
+                    if($clienteModelo->insertCliente($cliente)){
+                        header('location:'.PATH.'/Usuario/login');
+                    }
+                }
+                
+            }
             $viewBag['errores']=$errores;
+            $viewBag['usuario']=$usuario;
             $this->render("registro.php",$viewBag);
 
         }else{
