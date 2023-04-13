@@ -2,19 +2,19 @@
 
 //Para ver si el formato del correo es válido
 function esCorreo($correo_usuario){
-    if(return preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',$correo_usuario)) {
-
+    if(preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',$correo_usuario)) {
+        return false;
     } else {
-        return "El formato de correo eléctronico es inválido."
+        return "El formato de correo electrónico es inválido.";
     }
 }
 
 //Verifica si cumple con el patrón establecido para el DUI
 function esDUI($identificacion_usuario){
-    if(return !preg_match('/^[0-9]{2}-[0-9]{4}-[0-9]{1}$/', $identificacion_usuario)) {
-    
+    if(!preg_match('/^[0-9]{2}-[0-9]{4}-[0-9]{1}$/', $identificacion_usuario)) {
+        return "El formato DUI no es el correcto.";
     } else {
-        return "El formato DUI no es el correcto."
+        return false;
     }
 }
 
