@@ -137,10 +137,10 @@ $output = $dompdf->output();
 $namepdf = $id_cliente.'-'.$id_cupon.".pdf";
 $path = './Vista/pdfDoc/'.$namepdf;
 file_put_contents($path, $output);
+header('location:'.PATH.'/Carrito/abrirPdf/'.$namepdf);
     ?>
     <?php
         include './Vista/footer.php';
-        header('location:'.PATH.'/Carrito/abrirPdf/'.$namepdf);
     ?>
 
 </body>
