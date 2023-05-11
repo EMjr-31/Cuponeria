@@ -12,6 +12,7 @@
 <body>
     <?php
         include './Vista/menu.php';
+        $empresa_cupon = $cupon_detalle['nombre_empresa'];
         $cupon_detalles=$cupon_detalles[0];
         $titulo_cupon=$cupon_detalles['titulo_cupon'];
         $precio_oferta_cupon=$cupon_detalles['precio_oferta_cupon'];
@@ -35,6 +36,7 @@
                         <form class="col-md-6" action="<?=isset($_SESSION['login_data'])?PATH."/Carrito/comprar/":PATH."/Usuario/login/"?>">
                             <h1 class="Cooming_soon_taital"><?=$titulo_cupon?></h1>
                             <div class="movie_main">
+                                <div class="mins_text_1">Empresa; <?php $empresa_cupon;?></div>
                                 <div class="mins_text_1">Valor $ <?php echo number_format($precio_oferta_cupon,'2','.',',');?></div>           
                                 <div class="mins_text_1">Descuento <?php echo number_format($descuento,'0','.',',').'%';?></div>
                                 <div class="mins_text_1">Ahorras $ <?php echo number_format($ahorro,'2','.',',');?></div>
