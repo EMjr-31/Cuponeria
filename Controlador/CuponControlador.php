@@ -1,12 +1,15 @@
 <?php
 require_once 'Controlador.php';
 require_once './Modelo/CuponModelo.php';
+require_once './Modelo/EmpresaModelo.php';
 class CuponControlador extends Controlador{
 
     private $model;
+    private $modelEmpresa;
 
     function __construct(){
         $this->model=new CuponModelo();
+        $this->$modelEmpresa = new EmpresaModelo();
     }
 
     public function Index(){
@@ -26,7 +29,9 @@ class CuponControlador extends Controlador{
     public function detalles($id){
         $viewBag=array();
         $cupon_detalles=$this->model->get($id);
+        $nombre_empresa = $this->modelEmpresa->get($cupon_detalles['id_empresa']);
         $viewBag['cupon_detalles']=$cupon_detalles;
+        $viewBag['nombre_empresa'] = $nombre_empresa;
         $_SESSION['cupon']=$cupon_detalles;
         $this->render("detalleCupones.php",$viewBag);
     }
